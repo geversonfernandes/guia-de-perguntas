@@ -1,5 +1,14 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import { connection } from './database/database.js'
+
+connection
+.authenticate()
+.then(() => {
+    console.log('Conexão realizada com sucesso')
+}).catch((err) => {
+    console.log(err)
+})
 
 const app = express()
 
