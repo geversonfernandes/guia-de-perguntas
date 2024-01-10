@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { connection } from './database/database.js'
+import { Question } from './database/question.js'
 
 connection
 .authenticate()
@@ -29,7 +30,12 @@ app.get('/ask', (req, res) => {
 app.post('/save-ask', (req, res) => {
     const title = req.body.title
     const description = req.body.description
-    res.send({title, description})
+    Question.create({
+        title,
+        description
+    }).then(() => {
+        res.redirect('/')
+    })
 })
 
 app.listen(8080, () => {
