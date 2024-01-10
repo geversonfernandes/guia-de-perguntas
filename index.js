@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { connection } from './database/database.js'
 import { Question } from './database/question.js'
+import { Reply } from './database/reply.js'
 
 connection
 .authenticate()
