@@ -56,9 +56,18 @@ app.get('/question/:id', (req, res) => {
 		}
 	}).then(question => {
 		if(question !== null){
-			console.log(question)
-			res.render('question', {
-				question
+			Reply.findAll({
+				where: {
+					questionId: question.id
+				},
+				order: [
+					['id', 'DESC']
+				]
+			}).then((replys) => {
+				res.render('question', {
+					question,
+					replys
+				})
 			})
 		} else {
 			res.redirect('/')
