@@ -5,6 +5,14 @@
     <hr>
     <h1><%= question.title %></h1>
     <p><%= question.description %></p>
+    <hr>
+    <form method="POST" action="/reply">
+      <label>Resposta</label>
+      <textarea placeholder="Digite sua resposta" class="form-control" name="body"></textarea>
+      <br>
+      <input type="hidden" name="question" value="<%= question.id %>">
+      <button class="btn btn-primary">Responder</button>
+    </form>
   </div>
 </body>
 <%- include ('partials/footer.ejs') %>

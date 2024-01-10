@@ -66,6 +66,17 @@ app.get('/question/:id', (req, res) => {
 	})
 })
 
+app.post('/reply', (req, res) => {
+	const body = req.body.body
+	const questionId = req.body.question
+	Reply.create({
+		body,
+		questionId
+	}).then(() => {
+		res.redirect('/question/' + questionId)
+	})
+})
+
 app.listen(8080, () => {
     console.log('App running...')
 })	
